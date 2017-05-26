@@ -4,4 +4,4 @@ php:
   - 7.0
 
 script:
-    - .run-test.sh
+    - run-test.sh
