@@ -7,8 +7,7 @@ import sys
 import requests
 import re
 
-SMZDM_USERNAME = os.getenv('USERNAME')
-SMZDM_PASSWORD = os.getenv('PASSWORD')
+INFO = os.getenv('INFO')
 
 class SMZDMDailyException(Exception):
     def __init__(self, req):
@@ -51,7 +50,7 @@ class SMZDMDaily(object):
         return jdata
 
 if __name__ == '__main__':
-    if SMZDM_USERNAME is '' or SMZDM_PASSWORD is '':
-        sys.exit()
-    smzdm = SMZDMDaily(SMZDM_USERNAME, SMZDM_PASSWORD)
-    result = smzdm.checkin()
+    users = json.loads(INFO)
+    for user in users:
+        smzdm = SMZDMDaily(user['id'], user['pwd'])
+        result = smzdm.checkin()
